@@ -15,6 +15,7 @@ public class BaseTest {
     public static void setUp(){
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
         driver = new FirefoxDriver();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 

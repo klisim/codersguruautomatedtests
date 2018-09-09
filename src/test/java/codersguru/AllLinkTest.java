@@ -9,6 +9,7 @@ public class AllLinkTest extends BaseTest {
         driver.get("https://men-men-s-01.codersguru.pl/");
 
         HomePage homePage = new HomePage(driver);
+        homePage.clickOnCodersLabLink();
         homePage.clickOnAllLinks();
     }
 }

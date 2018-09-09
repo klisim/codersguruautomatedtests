@@ -1,9 +1,14 @@
 package codersguru;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class HomePage extends BasePage {
@@ -38,6 +43,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "/html/body/footer/div/div[2]/a")
     private WebElement facebookLink;
 
+    @FindBy(xpath="/html/body/footer/div/legal/a")
+    private WebElement codersLabLink;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -61,17 +69,43 @@ public class HomePage extends BasePage {
                 facebookLink};
 
         for (WebElement temp : listaLinkow) {
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
             temp.click();
             assertTrue(driver.getTitle().contains("Coders"));
+
+            // wypiszmy w konsoli co robimy
+            System.out.println("Aktualnie jestem na linku :" + temp.toString());
+            System.out.println("Adres odwiedzony to: " + driver.getCurrentUrl());
+
             driver.navigate().back();
         }
+    }
+
+    public void clickOnCodersLabLink() {
+        // złap uchwyt do aktualnego okna
+        String parentHandle = driver.getWindowHandle();
+        // kliknij na codersLabLink i otwórz nowe okno
+        codersLabLink.click();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // przeswitchuj się do otwartego okna
+        for (String winHandle: driver.getWindowHandles()){
+            driver.switchTo().window(winHandle);
+        }
+
+        // sprawdź asercje
+        assertTrue(driver.getTitle().contains("Coders"));
+
+        // zamknij okno
+        driver.close();
+        // wróc do poprzedniego okna
+        driver.switchTo().window(parentHandle);
     }
 
 }
