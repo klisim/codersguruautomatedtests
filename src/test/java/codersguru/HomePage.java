@@ -82,7 +82,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void clickOnCodersLabLink() {
+    public boolean clickOnCodersLabLink() {
         // złap uchwyt do aktualnego okna
         String parentHandle = driver.getWindowHandle();
         // kliknij na codersLabLink i otwórz nowe okno
@@ -100,12 +100,18 @@ public class HomePage extends BasePage {
         }
 
         // sprawdź asercje
-        assertTrue(driver.getTitle().contains("Coders"));
+        if (driver.getTitle().contains("Coders")){
+            driver.close();
+            // wróc do poprzedniego okna
+            driver.switchTo().window(parentHandle);
+            return true;
+        }
 
         // zamknij okno
         driver.close();
         // wróc do poprzedniego okna
         driver.switchTo().window(parentHandle);
+        return false;
     }
 
 }

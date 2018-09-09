@@ -1,5 +1,6 @@
 package codersguru;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -9,7 +10,8 @@ public class AllLinkTest extends BaseTest {
         driver.get("https://men-men-s-01.codersguru.pl/");
 
         HomePage homePage = new HomePage(driver);
-        homePage.clickOnCodersLabLink();
+        boolean testCodersSieUdal = homePage.clickOnCodersLabLink();
+        Assert.assertTrue(testCodersSieUdal);
         homePage.clickOnAllLinks();
     }
 }
