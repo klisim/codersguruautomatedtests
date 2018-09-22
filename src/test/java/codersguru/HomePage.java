@@ -51,8 +51,8 @@ public class HomePage extends BasePage {
     }
 
     public void enterEmail(String email) {
-        this.emailTextBox.clear();
-        this.emailTextBox.sendKeys(email);
+        emailTextBox.clear();
+        emailTextBox.sendKeys(email);
     }
 
     public void clickOnAllLinks() {

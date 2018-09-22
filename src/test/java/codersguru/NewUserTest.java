@@ -21,7 +21,6 @@ import static org.junit.Assert.assertEquals;
 public class NewUserTest extends FirefoxTest {
     String name;
 
-
     @Given("^I open coder guru website$")
     public void iOpenCoderGuruWebsite(){
         FirefoxTest.setUp();
@@ -42,13 +41,13 @@ public class NewUserTest extends FirefoxTest {
     }
 
     @And("^I enter email \"([^\"]*)\"$")
-    public void iEnterEmail(String arg0) throws Throwable {
+    public void iEnterEmail(String arg0) {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.typeEmail(arg0);
     }
 
     @And("^I enter name \"([^\"]*)\" surname \"([^\"]*)\"$")
-    public void iEnterNameSurname(String arg0, String arg1) throws Throwable {
+    public void iEnterNameSurname(String arg0, String arg1) {
         name = arg0;
 
         RegistrationPage registrationPage = new RegistrationPage(driver);
@@ -56,7 +55,7 @@ public class NewUserTest extends FirefoxTest {
     }
 
     @And("^I provide password \"([^\"]*)\"$")
-    public void iProvidePassword(String arg0) throws Throwable {
+    public void iProvidePassword(String arg0) {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.typePassword(arg0);
     }
@@ -69,19 +68,19 @@ public class NewUserTest extends FirefoxTest {
     }
 
     @And("^I check that I have read terms$")
-    public void iCheckThatIHaveReadTerms() throws Throwable {
+    public void iCheckThatIHaveReadTerms() {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.checkTerms();
     }
 
     @And("^I click registration button$")
-    public void iClickRegistrationButton() throws Throwable {
+    public void iClickRegistrationButton(){
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.clickRegisterButton();
     }
 
     @Then("^User should be successfully created$")
-    public void userShouldBeSuccessfullyCreated() throws Throwable {
+    public void userShouldBeSuccessfullyCreated(){
         RegistrationPage registrationPage = new RegistrationPage(driver);
 
         String userName = registrationPage.readUserName();
@@ -91,19 +90,19 @@ public class NewUserTest extends FirefoxTest {
     }
 
     @And("^I select company user$")
-    public void iSelectCompanyUser() throws Throwable {
+    public void iSelectCompanyUser() {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.selectCompanyAccount();
     }
 
     @And("^I enter company name \"([^\"]*)\"$")
-    public void iEnterCompanyName(String arg0) throws Throwable {
+    public void iEnterCompanyName(String arg0) {
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.typeCompanyName(arg0);
     }
 
     @And("^I enter generated NIP$")
-    public void iEnterGeneratedNIP() throws Throwable {
+    public void iEnterGeneratedNIP() {
 
         WebDriver helpDriver = new FirefoxDriver();
         helpDriver.get("http://generatory.it/");
