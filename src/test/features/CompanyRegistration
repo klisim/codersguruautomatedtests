@@ -1,0 +1,15 @@
+Feature: Register new company user
+
+  Scenario: Create new company user
+    Given I open coder guru website
+    When I go to registration page
+    And I select company user
+    And I enter email "adfg1352123e1st@mail.com"
+    And I enter name "Siwy" surname "Seba"
+    And I provide password "OddajMiMojeStoBaniek"
+    And I provide address "Wroclaw" "54-520" "Rzeźnicza" "44"
+    And I check that I have read terms
+    And I enter company name "SCV Consultants"
+    And I enter generated NIP
+    And I click registration button
+    Then User should be successfully created

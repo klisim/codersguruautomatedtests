@@ -94,6 +94,7 @@ public class HomePage extends BasePage {
             e.printStackTrace();
         }
 
+
         // przeswitchuj się do otwartego okna
         for (String winHandle: driver.getWindowHandles()){
             driver.switchTo().window(winHandle);
@@ -113,5 +114,10 @@ public class HomePage extends BasePage {
         driver.switchTo().window(parentHandle);
         return false;
     }
+
+    public void goToRegistrationPage() {
+        accountLink.click();
+    }
+
 
 }
