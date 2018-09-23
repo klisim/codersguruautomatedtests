@@ -1,8 +1,8 @@
 Feature: Find mentor as logged user
 
   Scenario: Log in and provide wrong payment options
-    Given I open coder guru website
-    When I log in as "test@test.pl" user with password "dupa123"
+    Given I open login coder guru website
+    When I log in as "45ddgdgss@mail.com" user with password "Mojehaslo"
     And I pick from the dropdown "GIT" and click find mentor
     And I pick mentor 1 on the list
     And I enter problem description as "Nie umiem w gita"
