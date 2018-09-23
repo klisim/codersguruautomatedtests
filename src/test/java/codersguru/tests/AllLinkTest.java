@@ -1,5 +1,6 @@
-package codersguru;
+package codersguru.tests;
 
+import codersguru.pages.HomePage;
 import org.junit.Assert;
 import org.junit.Test;
 
