@@ -2,6 +2,7 @@ package codersguru.tests;
 
 import codersguru.pages.HomePage;
 import codersguru.pages.RegistrationPage;
+import common.FirefoxTest;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -21,7 +22,7 @@ public class NewUserTest extends FirefoxTest {
     public void iOpenCoderGuruWebsite(){
         FirefoxTest.setUp();
         driver.get("https://men-men-s-01.codersguru.pl");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @When("^I go to registration page$")

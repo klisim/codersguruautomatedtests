@@ -1,6 +1,7 @@
 package codersguru.tests;
 
 import codersguru.pages.HomePage;
+import common.FirefoxTest;
 import org.junit.Assert;
 import org.junit.Test;
 
