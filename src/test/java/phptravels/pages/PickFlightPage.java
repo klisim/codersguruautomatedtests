@@ -12,53 +12,60 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class PickFlightPage extends BasePage {
-    @FindBy(xpath="/html/body/div[4]/div[2]/div/form/div[1]")
-    WebElement fromFlight;
-    @FindBy(xpath="/html/body/div[11]/div/input")
-    WebElement fromFlightTextBox;
-    @FindBy(xpath="/html/body/div[4]/div[2]/div/form/div[9]/div[2]/div/div/ins")
-    WebElement roundTripButton;
-    @FindBy(xpath="/html/body/div[4]/div[2]/div/form/div[6]/button")
-    WebElement searchButton;
-    @FindBy(xpath="/html/body/div[4]/div[2]/div/form/div[3]/div/input")
-    WebElement dateTextBox;
-    @FindBy(xpath="/html/body/div[4]/div[2]/div/form/div[2]")
-    WebElement toFlight;
-    @FindBy(xpath="/html/body/div[12]/div/input")
-    WebElement toFlightTextBox;
+    @FindBy (xpath="/html/body/div[4]/div[2]/div/form/div[9]/div[2]/div/label")
+    private WebElement roundTripCheckBox;
+
+    @FindBy (id = "s2id_location_from")
+    private WebElement fromCityClickOnBox;
+
+    @FindBy (xpath = "/html/body/div[11]/div/input")
+    private WebElement fromCityTextBox;
+
+    @FindBy (id="s2id_location_to")
+    private WebElement toCityClickOnBox;
+
+    @FindBy (xpath = "/html/body/div[12]/div/input")
+    private WebElement toCityTextBox;
+
+    @FindBy (name="departure")
+    private WebElement fromDateTextBox;
+
+    @FindBy (name="arrival")
+    private WebElement toDateTextBox;
+
+    @FindBy (xpath = "//*[@id=\"body-section\"]/div[2]/div/form/div[6]/button")
+    private WebElement submitButton;
 
     public PickFlightPage(WebDriver driver) {
         super(driver);
     }
 
-    public void enterDepartureAndArrival (String from, String to) {
+    public void enterDepartureAndArrival (String from, String to, String fromDate, String toDate) {
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.titleContains("Flights"));
+        wait.until(ExpectedConditions.elementToBeClickable(roundTripCheckBox));
 
-//        roundTripButton.click();
-//        searchButton.click();
-//        dateTextBox.sendKeys("2019-01-31");
-//        dateTextBox.sendKeys(Keys.RETURN);
+        roundTripCheckBox.click();
 
-        fromFlight.click();
-        fromFlightTextBox.sendKeys("WAW");
+        fromCityClickOnBox.click();
+        enterKeys(fromCityTextBox, from);
+
+        toCityClickOnBox.click();
+        enterKeys(toCityTextBox, to);
+        enterKeys(fromDateTextBox, fromDate);
+        enterKeys(toDateTextBox, toDate);
+
+        submitButton.click();
+    }
+
+    public void enterKeys(WebElement element, String keys) {
+        element.sendKeys(keys);
         try {
-            Thread.sleep(1500);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        fromFlightTextBox.sendKeys(Keys.RETURN);
-
-        toFlight.click();
-        toFlightTextBox.sendKeys("ROC");
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        toFlightTextBox.sendKeys(Keys.RETURN);
-
+        element.sendKeys(Keys.ENTER);
     }
 
 }
